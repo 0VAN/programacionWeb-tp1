@@ -1,4 +1,4 @@
-<html data-ng-app="tp1">
+<html data-ng-app="storeApp">
 
 <link rel="stylesheet" type="text/css" href="resources/static/css/table.css">
 <link rel="stylesheet" type="text/css" href="resources/static/css/semantic.css">
@@ -9,14 +9,10 @@
 <script type="application/javascript" src="resources/static/js/angular-route.js"></script>
 <script type="application/javascript" src="resources/static/js/semantic.js"></script>
 
-<script type="application/javascript" src="resources/app/test.js"></script>
+<script type="application/javascript" src="resources/app/storeApp.js"></script>
 
 
-<body data-ng-controller="listaGenerica">
-{{globalSearch}}
-{{searchByName}}
-{{searchByLastName}}
-{{searchByCI}}
+<body data-ng-controller="listProductsController">
 
 <div class="ui divider"></div>
 <div class="ui two column centered grid">
@@ -66,11 +62,12 @@
                 </th>
             </tr>
             </thead>
-            <tbody data-ng-model="datos" data-ng-repeat="dato in datos |filter:{firstName:searchByName,lastName:searchByLastName,CI:searchByCI}">
+            <tbody data-ng-model="productsList"
+                   data-ng-repeat="product in productsList | filter:globalSearch | filter:{firstName:searchByName,lastName:searchByLastName,CI:searchByCI}">
             <tr>
-                <td>{{dato.firstName}}</td>
-                <td>{{dato.lastName}}</td>
-                <td>{{dato.CI}}</td>
+                <td>{{product.firstName}}</td>
+                <td>{{product.lastName}}</td>
+                <td>{{product.CI}}</td>
             </tr>
             </tbody>
         </table>

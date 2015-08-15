@@ -3,10 +3,10 @@
  */
 
 angular
-    .module('tp1', [])
-    .controller('listaGenerica',listaGenerica);
+    .module('storeApp', [])
+    .controller('listProductsController', listProductsController);
 
-function listaGenerica($scope){
+function listProductsController($scope) {
     var data = {
         employees: [
             {firstName: 'John', lastName: 'Doe', CI: '123'},
@@ -19,6 +19,6 @@ function listaGenerica($scope){
     $scope.searchByName='';
     $scope.searchByCI='';
     $scope.searchByLastName='';
-    $scope.datos = data.employees;
+    $scope.productsList = data.employees;
 
 }
