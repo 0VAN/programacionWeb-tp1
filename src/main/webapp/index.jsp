@@ -10,6 +10,7 @@
 <script type="application/javascript" src="resources/static/js/semantic.js"></script>
 
 <script type="application/javascript" src="resources/app/storeApp.js"></script>
+<script type="application/javascript" src="resources/app/store.services.js"></script>
 
 
 <body data-ng-controller="listProductsController">
@@ -45,7 +46,8 @@
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Last Name..." data-ng-model="searchByLastName">
+                            <input class="prompt" type="text" placeholder="Last Name..."
+                                   data-ng-model="searchByLastName">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -62,15 +64,34 @@
                 </th>
             </tr>
             </thead>
-            <tbody data-ng-model="productsList"
-                   data-ng-repeat="product in productsList | filter:globalSearch | filter:{firstName:searchByName,lastName:searchByLastName,CI:searchByCI}">
-            <tr>
+            <tbody>
+            <tr data-ng-model="productsList"
+                data-ng-repeat="product in productsList
+            | filter:globalSearch
+            | filter:{firstName:searchByName,lastName:searchByLastName,CI:searchByCI}"
+                data-ng-click="displayProductInformation(product)">
                 <td>{{product.firstName}}</td>
                 <td>{{product.lastName}}</td>
                 <td>{{product.CI}}</td>
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="ui modal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Product XXX details
+        </div>
+        <div class="content">
+            <div class="description">
+                {{productDetails.firstName}}
+                <br>
+                {{productDetails.lastName}}
+                <br>
+                {{productDetails.CI}}
+            </div>
+        </div>
     </div>
 </div>
 </body>

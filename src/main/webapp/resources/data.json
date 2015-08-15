@@ -1,5 +1,4 @@
-{
-  "employees": [
+[
     {
       "firstName": "John",
       "lastName": "Doe",
@@ -16,4 +15,3 @@
       "CI": "123"
     }
   ]
-}
