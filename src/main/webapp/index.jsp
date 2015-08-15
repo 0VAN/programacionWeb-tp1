@@ -11,18 +11,20 @@
 
 <script type="application/javascript" src="resources/app/storeApp.js"></script>
 <script type="application/javascript" src="resources/app/store.services.js"></script>
+<script type="application/javascript" src="resources/app/store.filters.js"></script>
 
 
 <body data-ng-controller="listSalesController">
 <div class="ui divider"></div>
-<div class="ui three column centered grid">
+<div class="ui centered grid">
     <div class="five column centered row">
         <div class="column"></div>
         <div class="column"></div>
         <div class="column">
             <div class="ui fluid category search" id="global-search">
                 <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Search..." data-ng-model="globalSearch">
+                    <input class="prompt" type="text" placeholder="Search..." data-ng-model="globalSearch"
+                           data-ng-change="applyFilter()">
                     <i class="search icon"></i>
                 </div>
                 <div class="results"></div>
@@ -30,14 +32,15 @@
         </div>
     </div>
 
-    <div class="column">
+    <div class="twelve wide column">
         <table class="ui celled table">
             <thead>
             <tr>
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Numero..." data-ng-model="searchByName">
+                            <input class="prompt" type="text" placeholder="Numero..." data-ng-model="searchByNumero"
+                                   data-ng-change="applyFilter()">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -47,7 +50,7 @@
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="Monto Total..."
-                                   data-ng-model="searchByLastName">
+                                   data-ng-model="searchByMontoTotal" data-ng-change="applyFilter()">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -57,7 +60,7 @@
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="Nombre del Cliente..."
-                                   data-ng-model="searchByCI">
+                                   data-ng-model="searchByNombreCliente" data-ng-change="applyFilter()">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -67,7 +70,7 @@
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="RUC del Cliente..."
-                                   data-ng-model="searchByCI">
+                                   data-ng-model="searchByRucCliente" data-ng-change="applyFilter()">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -76,7 +79,8 @@
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Fecha..." data-ng-model="searchByCI">
+                            <input class="prompt" type="text" placeholder="Fecha..." data-ng-model="searchByFecha"
+                                   data-ng-change="applyFilter()">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>

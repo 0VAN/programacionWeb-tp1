@@ -7,9 +7,15 @@ angular
 
 function storeServices($resource) {
     var URL = '/resources/data:id.json';
+    var URLtest = '/ventas/';
+
     return {
         salesServices: $resource(URL, {
             id: '@id'
-        }, {})
+        }, {}),
+        testURL: $resource(URLtest, {}, {
+            'get': {method: 'GET'}
+        })
+
     };
 }
