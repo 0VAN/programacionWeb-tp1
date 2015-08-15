@@ -8,7 +8,7 @@ angular
 function storeServices($resource) {
     var URL = '/resources/data:id.json';
     return {
-        productsServices: $resource(URL, {
+        salesServices: $resource(URL, {
             id: '@id'
         }, {})
     };

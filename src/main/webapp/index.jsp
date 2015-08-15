@@ -13,10 +13,9 @@
 <script type="application/javascript" src="resources/app/store.services.js"></script>
 
 
-<body data-ng-controller="listProductsController">
-
+<body data-ng-controller="listSalesController">
 <div class="ui divider"></div>
-<div class="ui two column centered grid">
+<div class="ui three column centered grid">
     <div class="five column centered row">
         <div class="column"></div>
         <div class="column"></div>
@@ -30,6 +29,7 @@
             </div>
         </div>
     </div>
+
     <div class="column">
         <table class="ui celled table">
             <thead>
@@ -37,7 +37,7 @@
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Name..." data-ng-model="searchByName">
+                            <input class="prompt" type="text" placeholder="Numero..." data-ng-model="searchByName">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -46,7 +46,7 @@
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Last Name..."
+                            <input class="prompt" type="text" placeholder="Monto Total..."
                                    data-ng-model="searchByLastName">
                             <i class="search icon"></i>
                         </div>
@@ -56,7 +56,27 @@
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="CI..." data-ng-model="searchByCI">
+                            <input class="prompt" type="text" placeholder="Nombre del Cliente..."
+                                   data-ng-model="searchByCI">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                </th>
+                <th>
+                    <div class="ui fluid category search">
+                        <div class="ui icon input">
+                            <input class="prompt" type="text" placeholder="RUC del Cliente..."
+                                   data-ng-model="searchByCI">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                </th>
+                <th>
+                    <div class="ui fluid category search">
+                        <div class="ui icon input">
+                            <input class="prompt" type="text" placeholder="Fecha..." data-ng-model="searchByCI">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -65,18 +85,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-model="productsList"
-                data-ng-repeat="product in productsList
-            | filter:globalSearch
-            | filter:{firstName:searchByName,lastName:searchByLastName,CI:searchByCI}"
-                data-ng-click="displayProductInformation(product)">
-                <td>{{product.firstName}}</td>
-                <td>{{product.lastName}}</td>
-                <td>{{product.CI}}</td>
+            <tr data-ng-model="salesList"
+                data-ng-repeat="sale in salesList"
+                data-ng-click="displaySalesInformation(sale)">
+                <td>{{sale.numero}}</td>
+                <td>{{sale.monto_total}}</td>
+                <td>{{sale.nombre_cliente}}</td>
+                <td>{{sale.ruc_cliente}}</td>
+                <td>{{sale.fecha}}</td>
             </tr>
             </tbody>
         </table>
     </div>
+
     <div class="ui modal">
         <i class="close icon"></i>
 
@@ -85,11 +106,15 @@
         </div>
         <div class="content">
             <div class="description">
-                {{productDetails.firstName}}
+                {{saleDetails.numero}}
                 <br>
-                {{productDetails.lastName}}
+                {{saleDetails.monto_total}}
                 <br>
-                {{productDetails.CI}}
+                {{saleDetails.nombre_cliente}}
+                <br>
+                {{saleDetails.ruc_cliente}}
+                <br>
+                {{saleDetails.fecha}}
             </div>
         </div>
     </div>

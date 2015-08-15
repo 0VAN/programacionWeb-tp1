@@ -3,10 +3,13 @@
  */
 
 angular
-    .module('storeApp', ['ngResource', 'ngRoute'])
-    .controller('listProductsController', listProductsController);
+    .module('storeApp', [
+        'ngResource',
+        'ngRoute']
+)
+    .controller('listSalesController', listSalesController);
 
-function listProductsController($scope, storeServices) {
+function listSalesController($scope, storeServices) {
 
     //Data for testing
     //var data = {
@@ -21,11 +24,11 @@ function listProductsController($scope, storeServices) {
     $scope.searchByName='';
     $scope.searchByCI='';
     $scope.searchByLastName='';
-    $scope.productsList = storeServices.productsServices.query();
-    $scope.productDetails = '';
+    $scope.salesList = storeServices.salesServices.query();
+    $scope.saleDetails = '';
 
-    $scope.displayProductInformation = function (product) {
-        $scope.productDetails = product;
+    $scope.displaySalesInformation = function (sale) {
+        $scope.saleDetails = sale;
         $('.ui.modal')
             .modal('show')
         ;
