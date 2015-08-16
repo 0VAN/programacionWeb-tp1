@@ -11,7 +11,6 @@
 
 <script type="application/javascript" src="resources/app/storeApp.js"></script>
 <script type="application/javascript" src="resources/app/store.services.js"></script>
-<script type="application/javascript" src="resources/app/store.filters.js"></script>
 
 
 <body data-ng-controller="listSalesController">
@@ -20,66 +19,117 @@
 <div class="ui fluid category search" id="global-search">
     <div class="ui icon input">
         <input class="prompt" type="text" placeholder="Search..." data-ng-model="globalSearch"
-               data-ng-change="applyFilter()">
+               data-ng-change="applyFiltering()">
         <i class="search icon"></i>
     </div>
-    <div class="results"></div>
 </div>
 <div class="ui divider"></div>
 
 <div class="ui centered grid">
-    <div class="twelve wide column">
+    <div class="thirteen wide column">
         <table class="ui celled table">
             <thead>
             <tr>
                 <th>
                     <div class="ui fluid category search">
-                        <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Numero..." data-ng-model="searchByNumero"
-                                   data-ng-change="applyFilter()">
-                            <i class="search icon"></i>
+                        <div class="ui icon">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Numero..." data-ng-model="searchByNumero"
+                                       data-ng-change="applyFiltering()">
+                                <i class="search icon"></i>
+                            </div>
+                                <div data-ng-click="applySorting(1)">
+                                    <div data-ng-if="selectedColumn==1">
+                                        <i class="sort content ascending icon" data-ng-show="showAscendingIcon"
+                                           data-ng-hide="showDescendingIcon"></i>
+                                        <i class="sort content descending icon" data-ng-hide="showAscendingIcon"
+                                           data-ng-show="showDescendingIcon"></i>
+                                    </div>
+                                    <div data-ng-if="selectedColumn!=1">
+                                        <i class="sort content ascending icon disabled"></i>
+                                    </div>
+                            </div>
                         </div>
-                        <div class="results"></div>
                     </div>
                 </th>
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="Monto Total..."
-                                   data-ng-model="searchByMontoTotal" data-ng-change="applyFilter()">
+                                   data-ng-model="searchByMontoTotal" data-ng-change="applyFiltering()">
                             <i class="search icon"></i>
                         </div>
-                        <div class="results"></div>
+                        <div data-ng-click="applySorting(2)">
+                            <div data-ng-if="selectedColumn==2">
+                                <i class="sort content ascending icon" data-ng-show="showAscendingIcon"
+                                   data-ng-hide="showDescendingIcon"></i>
+                                <i class="sort content descending icon" data-ng-hide="showAscendingIcon"
+                                   data-ng-show="showDescendingIcon"></i>
+                            </div>
+                            <div data-ng-if="selectedColumn!=2">
+                                <i class="sort content ascending icon disabled"></i>
+                            </div>
+                        </div>
                     </div>
                 </th>
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="Nombre del Cliente..."
-                                   data-ng-model="searchByNombreCliente" data-ng-change="applyFilter()">
+                                   data-ng-model="searchByNombreCliente" data-ng-change="applyFiltering()">
                             <i class="search icon"></i>
                         </div>
-                        <div class="results"></div>
+                        <div data-ng-click="applySorting(3)">
+                            <div data-ng-if="selectedColumn==3">
+                                <i class="sort content ascending icon" data-ng-show="showAscendingIcon"
+                                   data-ng-hide="showDescendingIcon"></i>
+                                <i class="sort content descending icon" data-ng-hide="showAscendingIcon"
+                                   data-ng-show="showDescendingIcon"></i>
+                            </div>
+                            <div data-ng-if="selectedColumn!=3">
+                                <i class="sort content ascending icon disabled"></i>
+                            </div>
+                        </div>
                     </div>
                 </th>
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="RUC del Cliente..."
-                                   data-ng-model="searchByRucCliente" data-ng-change="applyFilter()">
+                                   data-ng-model="searchByRucCliente" data-ng-change="applyFiltering()">
                             <i class="search icon"></i>
                         </div>
-                        <div class="results"></div>
+                        <div data-ng-click="applySorting(4)">
+                            <div data-ng-if="selectedColumn==4">
+                                <i class="sort content ascending icon" data-ng-show="showAscendingIcon"
+                                   data-ng-hide="showDescendingIcon"></i>
+                                <i class="sort content descending icon" data-ng-hide="showAscendingIcon"
+                                   data-ng-show="showDescendingIcon"></i>
+                            </div>
+                            <div data-ng-if="selectedColumn!=4">
+                                <i class="sort content ascending icon disabled"></i>
+                            </div>
+                        </div>
                     </div>
                 </th>
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
                             <input class="prompt" type="text" placeholder="Fecha..." data-ng-model="searchByFecha"
-                                   data-ng-change="applyFilter()">
+                                   data-ng-change="applyFiltering()">
                             <i class="search icon"></i>
                         </div>
-                        <div class="results"></div>
+                        <div data-ng-click="applySorting(5)">
+                            <div data-ng-if="selectedColumn==5">
+                                <i class="sort content ascending icon" data-ng-show="showAscendingIcon"
+                                   data-ng-hide="showDescendingIcon"></i>
+                                <i class="sort content descending icon" data-ng-hide="showAscendingIcon"
+                                   data-ng-show="showDescendingIcon"></i>
+                            </div>
+                            <div data-ng-if="selectedColumn!=5">
+                                <i class="sort content ascending icon disabled"></i>
+                            </div>
+                        </div>
                     </div>
                 </th>
             </tr>
@@ -133,7 +183,7 @@
         <i class="close icon"></i>
 
         <div class="header">
-            Product XXX details
+            Sales XXX details
         </div>
         <div class="content">
             <div class="description">

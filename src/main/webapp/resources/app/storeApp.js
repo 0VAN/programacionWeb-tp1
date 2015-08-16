@@ -22,22 +22,29 @@ function listSalesController($scope, storeServices) {
 
     var params = {};
     params.page = $scope.page;
+    params.numero = 'asc';
 
     //variables for filtering
-    $scope.globalSearch='';
+    $scope.globalSearch = '';
     $scope.searchByNumero = '';
     $scope.searchByMontoTotal = '';
     $scope.searchByNombreCliente = '';
     $scope.searchByRucCliente = '';
     $scope.searchByFecha = '';
 
+    //variables for sorting icons
+    $scope.showAscendingIcon = true;
+    $scope.showDescendingIcon = false;
+
+
     //variables for pagination and sorting
-    $scope.page = '1';
-    $scope.numero = '';
-    $scope.monto_total = '';
-    $scope.nombre_cliente = '';
-    $scope.ruc_cliente = '';
-    $scope.fecha = '';
+    $scope.page = 1;
+    //$scope.numero = 'asc';
+    //$scope.monto_total = '';
+    //$scope.nombre_cliente = '';
+    //$scope.ruc_cliente = '';
+    //$scope.fecha = '';
+    $scope.selectedColumn = 1;
 
     //
     storeServices.salesServices.get(function (data) {
@@ -48,7 +55,35 @@ function listSalesController($scope, storeServices) {
 
     $scope.saleDetails = '';
 
-    $scope.applyFilter = function () {
+    $scope.applySorting = function (columnNumber) {
+        $scope.showAscendingIcon = !$scope.showAscendingIcon;
+        $scope.showDescendingIcon = !$scope.showDescendingIcon;
+
+        params = {};
+        params.page = $scope.page;
+
+        var sortValue = $scope.showAscendingIcon == true ? 'asc' : 'desc';
+        $scope.selectedColumn = columnNumber;
+
+        if ($scope.selectedColumn == 1)
+            params.numero = sortValue;
+        else if ($scope.selectedColumn == 2)
+            params.monto_total = sortValue;
+        else if ($scope.selectedColumn == 3)
+            params.nombre_cliente = sortValue;
+        else if ($scope.selectedColumn == 4)
+            params.ruc_cliente = sortValue;
+        else if ($scope.selectedColumn == 5)
+            params.fecha = sortValue;
+
+        storeServices.testURL.get(params);
+
+    };
+
+    $scope.applyFiltering = function () {
+
+        params = {};
+        params.page = $scope.page;
 
         if ($scope.searchByNumero != '')
             params.by_numero = $scope.searchByNumero;
@@ -61,17 +96,6 @@ function listSalesController($scope, storeServices) {
         if ($scope.searchByFecha != '')
             params.by_fecha = $scope.searchByFecha;
 
-        if ($scope.numero != '')
-            params.numero = $scope.numero;
-        if ($scope.monto_total != '')
-            params.monto_total = $scope.monto_total;
-        if ($scope.nombre_cliente != '')
-            params.nombre_cliente = $scope.nombre_cliente;
-        if ($scope.ruc_cliente != '')
-            params.ruc_cliente = $scope.ruc_cliente;
-        if ($scope.fecha != '')
-            params.fecha = $scope.fecha;
-
         storeServices.testURL.get(params);
     };
 
@@ -81,5 +105,6 @@ function listSalesController($scope, storeServices) {
             .modal('show')
         ;
     }
+
 
 }
