@@ -20,17 +20,36 @@ function listSalesController($scope, storeServices) {
     //    ]
     //};
 
+    var params = {};
+    params.page = $scope.page;
+
+    //variables for filtering
     $scope.globalSearch='';
     $scope.searchByNumero = '';
     $scope.searchByMontoTotal = '';
     $scope.searchByNombreCliente = '';
     $scope.searchByRucCliente = '';
     $scope.searchByFecha = '';
-    $scope.salesList = storeServices.salesServices.query();
+
+    //variables for pagination and sorting
+    $scope.page = '1';
+    $scope.numero = '';
+    $scope.monto_total = '';
+    $scope.nombre_cliente = '';
+    $scope.ruc_cliente = '';
+    $scope.fecha = '';
+
+    //
+    storeServices.salesServices.get(function (data) {
+        $scope.salesList = data.ventas;
+        $scope.salesMeta = data.meta;
+
+    });
+
     $scope.saleDetails = '';
+
     $scope.applyFilter = function () {
-        //console.log($scope.globalSearch+' '+$scope.searchByNumero+' '+ $scope.searchByMontoTotal+' '+$scope.searchByNombreCliente+' '+$scope.searchByRucCliente+' '+ $scope.searchByFecha);
-        var params = {};
+
         if ($scope.searchByNumero != '')
             params.by_numero = $scope.searchByNumero;
         if ($scope.searchByMontoTotal != '')
@@ -41,6 +60,17 @@ function listSalesController($scope, storeServices) {
             params.by_ruc_cliente = $scope.searchByRucCliente;
         if ($scope.searchByFecha != '')
             params.by_fecha = $scope.searchByFecha;
+
+        if ($scope.numero != '')
+            params.numero = $scope.numero;
+        if ($scope.monto_total != '')
+            params.monto_total = $scope.monto_total;
+        if ($scope.nombre_cliente != '')
+            params.nombre_cliente = $scope.nombre_cliente;
+        if ($scope.ruc_cliente != '')
+            params.ruc_cliente = $scope.ruc_cliente;
+        if ($scope.fecha != '')
+            params.fecha = $scope.fecha;
 
         storeServices.testURL.get(params);
     };

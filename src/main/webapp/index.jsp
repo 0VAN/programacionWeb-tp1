@@ -16,22 +16,18 @@
 
 <body data-ng-controller="listSalesController">
 <div class="ui divider"></div>
-<div class="ui centered grid">
-    <div class="five column centered row">
-        <div class="column"></div>
-        <div class="column"></div>
-        <div class="column">
-            <div class="ui fluid category search" id="global-search">
-                <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Search..." data-ng-model="globalSearch"
-                           data-ng-change="applyFilter()">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
-            </div>
-        </div>
-    </div>
 
+<div class="ui fluid category search" id="global-search">
+    <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Search..." data-ng-model="globalSearch"
+               data-ng-change="applyFilter()">
+        <i class="search icon"></i>
+    </div>
+    <div class="results"></div>
+</div>
+<div class="ui divider"></div>
+
+<div class="ui centered grid">
     <div class="twelve wide column">
         <table class="ui celled table">
             <thead>
@@ -99,6 +95,37 @@
                 <td>{{sale.fecha}}</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination menu">
+                        <a class="icon item">
+                            <i class="left arrow icon"></i>
+                        </a>
+                        <a class="active item">
+                            1
+                        </a>
+
+                        <div class="disabled item">
+                            ...
+                        </div>
+                        <a class="item">
+                            10
+                        </a>
+                        <a class="item">
+                            11
+                        </a>
+                        <a class="item">
+                            12
+                        </a>
+                        <a class="icon item">
+                            <i class="right arrow icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+
+            </tfoot>
         </table>
     </div>
 
