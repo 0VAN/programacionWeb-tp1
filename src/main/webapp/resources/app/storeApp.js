@@ -32,7 +32,7 @@ function listSalesController($scope, storeServices) {
     $scope.searchByFecha = '';
 
     //variables for pagination and sorting
-    $scope.page = '1';
+    $scope.page = 1;
     $scope.numero = '';
     $scope.monto_total = '';
     $scope.nombre_cliente = '';
@@ -82,8 +82,6 @@ function listSalesController($scope, storeServices) {
         ;
     };
 
-    ;
-
     $scope.goBackPage = function() {
 
 
@@ -110,5 +108,6 @@ function listSalesController($scope, storeServices) {
         }
 
     }
+
 
 }
