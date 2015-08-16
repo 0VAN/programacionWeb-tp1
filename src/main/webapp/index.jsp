@@ -29,7 +29,7 @@
 
 <div class="ui centered grid">
     <div class="twelve wide column">
-        <table class="ui celled table">
+        <table class="ui selectable celled table">
             <thead>
             <tr>
                 <th>
@@ -42,6 +42,7 @@
                         <div class="results"></div>
                     </div>
                 </th>
+
                 <th>
                     <div class="ui fluid category search">
                         <div class="ui icon input">
@@ -133,19 +134,32 @@
         <i class="close icon"></i>
 
         <div class="header">
-            Product XXX details
+            Detalles de Venta
         </div>
         <div class="content">
             <div class="description">
-                {{saleDetails.numero}}
-                <br>
-                {{saleDetails.monto_total}}
-                <br>
-                {{saleDetails.nombre_cliente}}
-                <br>
-                {{saleDetails.ruc_cliente}}
-                <br>
-                {{saleDetails.fecha}}
+                <table class="ui striped table">
+                    <tr>
+                        <td> Nombre </td>
+                        <td> {{saleDetails.numero}} </td>
+                    </tr>
+                    <tr>
+                        <td> Monto Total </td>
+                        <td> {{saleDetails.monto_total}} </td>
+                    </tr>
+                    <tr>
+                        <td> Cliente </td>
+                        <td> {{saleDetails.nombre_cliente}} </td>
+                    </tr>
+                    <tr>
+                        <td> RUC </td>
+                        <td> {{saleDetails.ruc_cliente}} </td>
+                    </tr>
+                    <tr>
+                        <td> Fecha de Venta </td>
+                        <td> {{saleDetails.fecha}} </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
