@@ -100,32 +100,18 @@
             <tr>
                 <th colspan="5">
                     <div class="ui right floated pagination menu">
-                        <a class="icon item">
+                        <a class="icon item" data-ng-click="goBackPage()" data-ng-if="checkNumberDown()">
                             <i class="left arrow icon"></i>
                         </a>
                         <a class="active item">
-                            1
+                            {{page}} of {{salesMeta.total_pages}}
                         </a>
-
-                        <div class="disabled item">
-                            ...
-                        </div>
-                        <a class="item">
-                            10
-                        </a>
-                        <a class="item">
-                            11
-                        </a>
-                        <a class="item">
-                            12
-                        </a>
-                        <a class="icon item">
-                            <i class="right arrow icon"></i>
+                        <a class="icon item" data-ng-if="checkNumberUp()" data-ng-click="goNextPage()">
+                            <i class="right arrow icon"> </i>
                         </a>
                     </div>
                 </th>
             </tr>
-
             </tfoot>
         </table>
     </div>
@@ -140,24 +126,24 @@
             <div class="description">
                 <table class="ui striped table">
                     <tr>
-                        <td> Nombre </td>
-                        <td> {{saleDetails.numero}} </td>
+                        <td> Nombre</td>
+                        <td> {{saleDetails.numero}}</td>
                     </tr>
                     <tr>
-                        <td> Monto Total </td>
-                        <td> {{saleDetails.monto_total}} </td>
+                        <td> Monto Total</td>
+                        <td> {{saleDetails.monto_total}}</td>
                     </tr>
                     <tr>
-                        <td> Cliente </td>
-                        <td> {{saleDetails.nombre_cliente}} </td>
+                        <td> Cliente</td>
+                        <td> {{saleDetails.nombre_cliente}}</td>
                     </tr>
                     <tr>
-                        <td> RUC </td>
-                        <td> {{saleDetails.ruc_cliente}} </td>
+                        <td> RUC</td>
+                        <td> {{saleDetails.ruc_cliente}}</td>
                     </tr>
                     <tr>
-                        <td> Fecha de Venta </td>
-                        <td> {{saleDetails.fecha}} </td>
+                        <td> Fecha de Venta</td>
+                        <td> {{saleDetails.fecha}}</td>
                     </tr>
                 </table>
             </div>
