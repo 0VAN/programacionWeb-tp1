@@ -27,7 +27,7 @@
 
 <div class="ui centered grid">
     <div class="thirteen wide column">
-        <table class="ui celled table">
+        <table class="ui selectable celled table">
             <thead>
             <tr>
                 <th>
@@ -149,32 +149,18 @@
             <tr>
                 <th colspan="5">
                     <div class="ui right floated pagination menu">
-                        <a class="icon item">
+                        <a class="icon item" data-ng-click="goBackPage()" data-ng-if="checkNumberDown()">
                             <i class="left arrow icon"></i>
                         </a>
                         <a class="active item">
-                            1
+                            {{page}} of {{salesMeta.total_pages}}
                         </a>
-
-                        <div class="disabled item">
-                            ...
-                        </div>
-                        <a class="item">
-                            10
-                        </a>
-                        <a class="item">
-                            11
-                        </a>
-                        <a class="item">
-                            12
-                        </a>
-                        <a class="icon item">
-                            <i class="right arrow icon"></i>
+                        <a class="icon item" data-ng-if="checkNumberUp()" data-ng-click="goNextPage()">
+                            <i class="right arrow icon"> </i>
                         </a>
                     </div>
                 </th>
             </tr>
-
             </tfoot>
         </table>
     </div>
@@ -183,19 +169,32 @@
         <i class="close icon"></i>
 
         <div class="header">
-            Sales XXX details
+            Detalles de Venta
         </div>
         <div class="content">
             <div class="description">
-                {{saleDetails.numero}}
-                <br>
-                {{saleDetails.monto_total}}
-                <br>
-                {{saleDetails.nombre_cliente}}
-                <br>
-                {{saleDetails.ruc_cliente}}
-                <br>
-                {{saleDetails.fecha}}
+                <table class="ui striped table">
+                    <tr>
+                        <td> Nombre</td>
+                        <td> {{saleDetails.numero}}</td>
+                    </tr>
+                    <tr>
+                        <td> Monto Total</td>
+                        <td> {{saleDetails.monto_total}}</td>
+                    </tr>
+                    <tr>
+                        <td> Cliente</td>
+                        <td> {{saleDetails.nombre_cliente}}</td>
+                    </tr>
+                    <tr>
+                        <td> RUC</td>
+                        <td> {{saleDetails.ruc_cliente}}</td>
+                    </tr>
+                    <tr>
+                        <td> Fecha de Venta</td>
+                        <td> {{saleDetails.fecha}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
