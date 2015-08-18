@@ -104,6 +104,33 @@ function listSalesController($scope, storeServices) {
         $('.ui.modal')
             .modal('show')
         ;
+    };
+
+    $scope.goBackPage = function() {
+
+
+        $scope.page -= 1;
+
+    };
+
+    $scope.goNextPage = function() {
+        $scope.page += 1;
+    };
+
+    $scope.checkNumberDown = function() {
+
+        if($scope.page  != 1) {
+            return true;
+        }
+
+    };
+
+    $scope.checkNumberUp = function() {
+
+        if($scope.page  != parseInt($scope.salesMeta.total_pages))  {
+            return true;
+        }
+
     }
 
 
