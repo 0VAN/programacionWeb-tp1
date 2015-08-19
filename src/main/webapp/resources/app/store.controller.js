@@ -7,6 +7,7 @@ angular
 
 function listController($scope, storeServices) {
 
+    var params = {};
     $scope.dataList = [];
     $scope.meta = {};
     $scope.page = 1;
@@ -44,7 +45,7 @@ function listController($scope, storeServices) {
     $scope.goBackPage = function () {
         $scope.page -= 1;
         params.page = $scope.page;
-        storeServices.config.URL.get(params);
+        storeServices.salesServices($scope.config.URL).get(params);
 
     };
 
@@ -53,9 +54,4 @@ function listController($scope, storeServices) {
         params.page = $scope.page;
         storeServices.salesServices($scope.config.URL).get(params);
     };
-
-
-    //storeServices.salesServices.get({url:url},function (data) {
-    //
-    //})
 }

@@ -11,6 +11,7 @@ angular
 
 function listSalesController() {
 
+
     var vm = this;
     vm.listConfig = {
         columns: [
