@@ -17,8 +17,8 @@ function listController($scope, storeServices) {
         $scope.dataMeta = serverResponse.meta;
 
 
-        $scope.test = function (valor) {
-            console.log(valor);
+        $scope.test = function (searchValue, column) {
+            console.log(searchValue, column);
         };
 
         //Pagination methods

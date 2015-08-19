@@ -15,8 +15,9 @@
                     <div data-ng-if="column.visible">
                         <div data-ng-if="column.searchable" class="ui fluid category search">
                             <div class="ui icon input">
-                                <input class="prompt" type="text" placeholder="{{column.name}}..." data-ng-model="data"
-                                       data-ng-change="test(data)">
+                                <input class="prompt" type="text" placeholder="{{column.name}}..."
+                                       data-ng-model="searchValue"
+                                       data-ng-change="test(searchValue,column.name)">
                                 <i class="search icon"></i>
                             </div>
                         </div>
