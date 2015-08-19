@@ -8,7 +8,16 @@ angular
 function storeServices($resource) {
     return {
         salesServices: function (URL) {
-            return $resource(URL, {}, {})
+            return $resource(URL, {}, {
+                'get': {
+                    method: 'GET',
+                    headers: {'Authorization': 'Bearer 096fa935862e4c55db73e8f153ef867f'}
+                }
+            })
         }
     };
 }
+
+
+
+

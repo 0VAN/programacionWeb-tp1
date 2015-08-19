@@ -20,7 +20,7 @@ function listSalesController() {
             {name: 'RUC del cliente', property: 'ruc_cliente', visible: true, sortable: true, searchable: true},
             {name: 'Fecha', property: 'fecha', visible: true, sortable: true, searchable: true}
         ],
-        URL: '/resources/data.json',
+        URL: 'http://pweb-demo-api.herokuapp.com/api/v1/ventas',
         globalSearch: true
     };
     //

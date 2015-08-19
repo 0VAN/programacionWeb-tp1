@@ -29,16 +29,6 @@ function listController($scope, storeServices) {
             }
 
         };
-        $scope.goBackPage = function () {
-
-
-            $scope.page -= 1;
-
-        };
-
-        $scope.goNextPage = function () {
-            $scope.page += 1;
-        };
 
         $scope.checkNumberDown = function () {
 
@@ -50,6 +40,19 @@ function listController($scope, storeServices) {
         //Pagination methods
 
     });
+
+    $scope.goBackPage = function () {
+        $scope.page -= 1;
+        params.page = $scope.page;
+        storeServices.config.URL.get(params);
+
+    };
+
+    $scope.goNextPage = function () {
+        $scope.page += 1;
+        params.page = $scope.page;
+        storeServices.salesServices($scope.config.URL).get(params);
+    };
 
 
     //storeServices.salesServices.get({url:url},function (data) {
