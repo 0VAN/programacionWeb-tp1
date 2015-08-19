@@ -6,13 +6,14 @@ angular
     .factory("storeServices", storeServices);
 
 function storeServices($resource) {
-    var URL = '/resources/data:id.json';
+
+
     var URLtest = '/ventas/';
 
     return {
-        salesServices: $resource(URL, {
-            id: '@id'
-        }, {}),
+        salesServices: function (URL) {
+            return $resource(URL, {}, {})
+        },
         testURL: $resource(URLtest, {}, {
             'get': {method: 'GET'}
         })
