@@ -17,7 +17,7 @@
                             <div class="ui icon input">
                                 <input class="prompt" type="text" placeholder="{{column.name}}..."
                                        data-ng-model="searchValue"
-                                       data-ng-change="test(searchValue,column.name)">
+                                       data-ng-change="applyFilter(searchValue,column.property)">
                                 <i class="search icon"></i>
                             </div>
                         </div>

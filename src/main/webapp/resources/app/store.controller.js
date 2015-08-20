@@ -7,6 +7,7 @@ angular
 
 function listController($scope, storeServices) {
 
+    var params = {};
     $scope.dataList = [];
     $scope.meta = {};
     $scope.page = 1;
@@ -17,8 +18,13 @@ function listController($scope, storeServices) {
         $scope.dataMeta = serverResponse.meta;
 
 
-        $scope.test = function (searchValue, column) {
-            console.log(searchValue, column);
+        $scope.applyFilter = function (searchValue, column) {
+            if (searchValue != '') {
+                params['by_' + column] = searchValue;
+            }
+            else {
+                delete params['by_' + column];
+            }
         };
 
         //Pagination methods
