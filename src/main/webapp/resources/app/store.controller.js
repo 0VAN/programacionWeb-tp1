@@ -13,11 +13,11 @@ function listController($scope, storeServices) {
 
     var selectedColumn = '';
 
-    var showLoadingModal = function (operation) {
-        $('#loadingModal')
-            .modal(operation)
-        ;
-    };
+    //var showLoadingModal = function (operation) {
+    //    $('#loadingModal')
+    //        .modal(operation)
+    //    ;
+    //};
 
     $scope.dataList = [];
     $scope.meta = {};
@@ -25,15 +25,15 @@ function listController($scope, storeServices) {
     $scope.sortIconClass = sortIconsClass[0];
     $scope.sortIconClassDisabled = sortIconsClassDisabled[0];
 
-    showLoadingModal('show');
+    //showLoadingModal('show');
     storeServices.salesServices($scope.config.URL).get(function (serverResponse) {
         $scope.dataList = serverResponse.ventas;
         $scope.dataMeta = serverResponse.meta;
-        showLoadingModal('hide');
+        //showLoadingModal('hide');
 
 
         $scope.applyFilter = function (searchValue, column) {
-            showLoadingModal('show');
+            // showLoadingModal('show');
 
             if (searchValue != '') {
                 params['by_' + column] = searchValue;
@@ -44,13 +44,13 @@ function listController($scope, storeServices) {
             storeServices.salesServices($scope.config.URL).get(params, function (data) {
                 $scope.dataList = data.ventas;
                 $scope.dataMeta = data.meta;
-                showLoadingModal('hide');
+                // showLoadingModal('hide');
 
             });
         };
 
         $scope.applySort = function (column) {
-            showLoadingModal('show');
+            //showLoadingModal('show');
 
             if (selectedColumn == column) {
                 $scope.sortIconClass = $scope.sortIconClass == sortIconsClass[0] ? sortIconsClass[1] : sortIconsClass[0];
@@ -64,7 +64,7 @@ function listController($scope, storeServices) {
             storeServices.salesServices($scope.config.URL).get(params, function (data) {
                 $scope.dataList = data.ventas;
                 $scope.dataMeta = data.meta;
-                showLoadingModal('hide');
+                // showLoadingModal('hide');
 
             });
         };
@@ -95,28 +95,28 @@ function listController($scope, storeServices) {
     });
 
     $scope.goBackPage = function () {
-        showLoadingModal('show');
+        //showLoadingModal('show');
 
         $scope.page -= 1;
         params.page = $scope.page;
         storeServices.salesServices($scope.config.URL).get(params, function (data) {
             $scope.dataList = data.ventas;
             $scope.dataMeta = data.meta;
-            showLoadingModal('hide');
+            //showLoadingModal('hide');
 
         });
 
     };
 
     $scope.goNextPage = function () {
-        showLoadingModal('show');
+        //showLoadingModal('show');
 
         $scope.page += 1;
         params.page = $scope.page;
         storeServices.salesServices($scope.config.URL).get(params, function (data) {
             $scope.dataList = data.ventas;
             $scope.dataMeta = data.meta;
-            showLoadingModal('hide');
+            //showLoadingModal('hide');
 
         });
 
