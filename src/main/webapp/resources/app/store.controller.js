@@ -8,17 +8,33 @@ angular
 function listController($scope, storeServices) {
 
     var params = {};
+    var sortIconsClass = ["circular inverted sort content icon ascending", "circular inverted sort content icon descending"];
+    var sortIconsClassDisabled = ["sort content icon ascending", "sort content icon descending "];
+
+    var selectedColumn = '';
+
+    var showLoadingModal = function (operation) {
+        $('#loadingModal')
+            .modal(operation)
+        ;
+    };
+
     $scope.dataList = [];
     $scope.meta = {};
     $scope.page = 1;
-    $scope.searchBoxes = [];
+    $scope.sortIconClass = sortIconsClass[0];
+    $scope.sortIconClassDisabled = sortIconsClassDisabled[0];
 
+    showLoadingModal('show');
     storeServices.salesServices($scope.config.URL).get(function (serverResponse) {
         $scope.dataList = serverResponse.ventas;
         $scope.dataMeta = serverResponse.meta;
+        showLoadingModal('hide');
 
 
         $scope.applyFilter = function (searchValue, column) {
+            showLoadingModal('show');
+
             if (searchValue != '') {
                 params['by_' + column] = searchValue;
             }
@@ -28,8 +44,35 @@ function listController($scope, storeServices) {
             storeServices.salesServices($scope.config.URL).get(params, function (data) {
                 $scope.dataList = data.ventas;
                 $scope.dataMeta = data.meta;
+                showLoadingModal('hide');
+
             });
         };
+
+        $scope.applySort = function (column) {
+            showLoadingModal('show');
+
+            if (selectedColumn == column) {
+                $scope.sortIconClass = $scope.sortIconClass == sortIconsClass[0] ? sortIconsClass[1] : sortIconsClass[0];
+                params[selectedColumn] = $scope.sortIconClass == sortIconsClass[0] ? 'asc' : 'desc';
+            }
+            else {
+                delete params   [selectedColumn];
+                selectedColumn = column;
+                params[selectedColumn] = $scope.sortIconClass == sortIconsClass[0] ? 'asc' : 'desc';
+            }
+            storeServices.salesServices($scope.config.URL).get(params, function (data) {
+                $scope.dataList = data.ventas;
+                $scope.dataMeta = data.meta;
+                showLoadingModal('hide');
+
+            });
+        };
+
+        $scope.isThisColumnSelected = function (column) {
+            return column == selectedColumn;
+        };
+
 
         //Pagination methods
         $scope.checkNumberUp = function () {
@@ -52,22 +95,39 @@ function listController($scope, storeServices) {
     });
 
     $scope.goBackPage = function () {
+        showLoadingModal('show');
+
         $scope.page -= 1;
         params.page = $scope.page;
         storeServices.salesServices($scope.config.URL).get(params, function (data) {
             $scope.dataList = data.ventas;
             $scope.dataMeta = data.meta;
+            showLoadingModal('hide');
+
         });
 
     };
 
     $scope.goNextPage = function () {
+        showLoadingModal('show');
+
         $scope.page += 1;
         params.page = $scope.page;
         storeServices.salesServices($scope.config.URL).get(params, function (data) {
             $scope.dataList = data.ventas;
             $scope.dataMeta = data.meta;
+            showLoadingModal('hide');
+
         });
 
     };
+
+    $scope.showDetailsModal = function (data) {
+        $scope.data = data;
+        $('#detailModal')
+            .modal('show')
+        ;
+    };
+
+
 }
