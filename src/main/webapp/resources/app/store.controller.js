@@ -25,6 +25,10 @@ function listController($scope, storeServices) {
             else {
                 delete params['by_' + column];
             }
+            storeServices.salesServices($scope.config.URL).get(params, function (data) {
+                $scope.dataList = data.ventas;
+                $scope.dataMeta = data.meta;
+            });
         };
 
         //Pagination methods
@@ -50,13 +54,20 @@ function listController($scope, storeServices) {
     $scope.goBackPage = function () {
         $scope.page -= 1;
         params.page = $scope.page;
-        storeServices.salesServices($scope.config.URL).get(params);
+        storeServices.salesServices($scope.config.URL).get(params, function (data) {
+            $scope.dataList = data.ventas;
+            $scope.dataMeta = data.meta;
+        });
 
     };
 
     $scope.goNextPage = function () {
         $scope.page += 1;
         params.page = $scope.page;
-        storeServices.salesServices($scope.config.URL).get(params);
+        storeServices.salesServices($scope.config.URL).get(params, function (data) {
+            $scope.dataList = data.ventas;
+            $scope.dataMeta = data.meta;
+        });
+
     };
 }
